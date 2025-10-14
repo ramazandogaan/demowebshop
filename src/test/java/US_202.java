@@ -55,5 +55,7 @@ public class US_202 extends BaseDriver {
 
         WebElement alreadyText = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[contains(text(),'specified')]")));
         Assert.assertTrue("\nThe specified email already exists\n is not visible", alreadyText.isDisplayed());
+
+        tearDown();
     }
 }
