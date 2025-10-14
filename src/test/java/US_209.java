@@ -40,7 +40,6 @@ public class US_209 extends BaseDriver {
         wait.until(ExpectedConditions.elementToBeClickable(loginBtnLogPage));
         loginBtnLogPage.click();
 
-
         WebElement loggedinPageText = driver.findElement(By.cssSelector(".topic-html-content-header"));
         wait.until(ExpectedConditions.visibilityOf(loggedinPageText));
 
@@ -84,6 +83,6 @@ public class US_209 extends BaseDriver {
         wait.until(ExpectedConditions.elementToBeClickable(downloadBtn));
         downloadBtn.click();
 
-        driver.quit();
+        tearDown();
     }
 }
