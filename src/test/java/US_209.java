@@ -40,8 +40,8 @@ public class US_209 extends BaseDriver {
         wait.until(ExpectedConditions.elementToBeClickable(loginBtnLogPage));
         loginBtnLogPage.click();
 
-        WebElement loggedinPageText = driver.findElement(By.cssSelector(".topic-html-content-header"));
-        wait.until(ExpectedConditions.visibilityOf(loggedinPageText));
+        WebElement loggedInPageText = driver.findElement(By.cssSelector(".topic-html-content-header"));
+        wait.until(ExpectedConditions.visibilityOf(loggedInPageText));
 
         WebElement usernameBtn = driver.findElement(By.cssSelector(".header-links a.account"));
         wait.until(ExpectedConditions.elementToBeClickable(usernameBtn));
