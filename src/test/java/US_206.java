@@ -1,22 +1,17 @@
+import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.*;
+import utilities.BaseDriver;
 import utilities.ReusableMethods;
-
 import java.time.Duration;
 
-public class US_206 {
-
-    WebDriver driver = new ChromeDriver();
+public class US_206 extends BaseDriver {
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
     @Test
     public void ordering(){
-
-
         driver.get("https://demowebshop.tricentis.com/");
 
         WebElement addtoCart = driver.findElement(By.xpath("(//input[@value='Add to cart'])[2]"));
@@ -24,7 +19,6 @@ public class US_206 {
         addtoCart.click();
 
         driver.get(driver.getCurrentUrl());
-
         WebElement shoppingCart = wait.until(ExpectedConditions.presenceOfElementLocated
                 (By.xpath("(//a[@class='ico-cart'])[1]")));
         wait.until(ExpectedConditions.elementToBeClickable(shoppingCart));
@@ -46,7 +40,7 @@ public class US_206 {
         wait.until(ExpectedConditions.elementToBeClickable(checkout));
         checkout.click();
 
-        WebElement guest = driver.findElement(By.xpath("(//input[@type='button'])[3]"));
+        WebElement guest = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//input[@type='button'])[3]")));
         wait.until(ExpectedConditions.elementToBeClickable(guest));
         guest.click();
 
@@ -98,9 +92,9 @@ public class US_206 {
         wait.until(ExpectedConditions.elementToBeClickable(btncontinue));
         btncontinue.click();
 
-        ReusableMethods.threadWait(10);
+        WebElement instorepickup = wait.until(ExpectedConditions.visibilityOfElementLocated
+                (By.xpath("//input[@id='PickUpInStore']")));
 
-        WebElement instorepickup = driver.findElement(By.xpath("//input[@id='ç']"));
         wait.until(ExpectedConditions.elementToBeClickable(instorepickup));
         instorepickup.click();
 
@@ -108,7 +102,7 @@ public class US_206 {
         wait.until(ExpectedConditions.elementToBeClickable(btncontinue2));
         btncontinue2.click();
 
-        WebElement payment = driver.findElement(By.xpath("(//input[@id='paymentmethod_2'])"));
+        WebElement payment = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//input[@type='radio'])[3]")));
         wait.until(ExpectedConditions.elementToBeClickable(payment));
         payment.click();
 
@@ -116,7 +110,9 @@ public class US_206 {
         wait.until(ExpectedConditions.elementToBeClickable(btncontinue3));
         btncontinue3.click();
 
-        WebElement cardholderName = driver.findElement(By.xpath("(//input[@id='CardholderName'])"));
+        ReusableMethods.threadWait(3);
+
+        WebElement cardholderName = driver.findElement(By.xpath("//input[@id='CardholderName']"));
         wait.until(ExpectedConditions.visibilityOf(cardholderName));
         cardholderName.sendKeys("Walter");
 
@@ -128,34 +124,36 @@ public class US_206 {
         Select select2 = new Select(dropdown2);
         select2.selectByVisibleText("2032");
 
+        WebElement cardCode = driver.findElement(By.xpath("//input[@id='CardCode']"));
+        wait.until(ExpectedConditions.visibilityOf(cardCode));
+        cardCode.sendKeys("123");
 
+        WebElement btncontinue4 = driver.findElement(By.xpath("//input[@class='button-1 payment-info-next-step-button']"));
+        wait.until(ExpectedConditions.elementToBeClickable(btncontinue4));
+        btncontinue4.click();
 
+        ReusableMethods.threadWait(4);
 
+        WebElement productTotal = driver.findElement(By.xpath("//span[@class='product-subtotal']"));
+        String productTotalText = productTotal.getText();
 
+        WebElement orderTotal = driver.findElement(By.xpath("//td[@class='cart-total-right']//strong"));
+        String orderTotalText = orderTotal.getText();
 
+        System.out.println("Ürün Toplamı: " + productTotalText);
+        System.out.println("Genel Toplam: " + orderTotalText);
+        Assert.assertEquals(productTotalText, orderTotalText);
 
+        WebElement btnConfirm = driver.findElement(By.xpath("//input[@class='button-1 confirm-order-next-step-button']"));
+        wait.until(ExpectedConditions.elementToBeClickable(btnConfirm));
+        btnConfirm.click();
 
+        ReusableMethods.threadWait(3);
 
+        WebElement btncontinue5 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='button']")));
+        wait.until(ExpectedConditions.elementToBeClickable(btncontinue5));
+        btncontinue5.click();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        tearDown();
     }
 }
