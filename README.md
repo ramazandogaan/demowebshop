@@ -1,10 +1,10 @@
 # demowebshop.com Automation Project
 
-## Proje Hakkında
-Bu proje, DemoWebShop web sitesi için Selenium ve Java kullanılarak hazırlanmış bir otomasyon test projesidir.  
-Projede kullanıcı girişleri, sayfa doğrulamaları,ödeme bilgileri ve temel fonksiyonel testler gerçekleştirilmiştir.
+## About the Project
+This project is an automation testing project developed for the DemoWebShop website using Selenium and Java.
+The project includes user login tests, page validations, payment information checks, and basic functional tests.
 
-## Hazırlayanlar
+## Prepared by
 - Sibel Cebeci 🖌️
 - Merve Çelebi 💻
 - Gürhan Ataş 🔧
@@ -12,16 +12,16 @@ Projede kullanıcı girişleri, sayfa doğrulamaları,ödeme bilgileri ve temel 
 - Affan Ergül ⚡
 - İbrahim Huseynli 🛠️
 
-## Kullanılan Teknolojiler
+## Technologies Used
 - Java 24
 - Selenium 4.36.0
 - JUnit 4
 - Maven
 - IntelliJ IDEA
 
-## Test Senaryoları
-## Test Senaryoları
-| Test ID  | Senaryo Açıklaması                      
+## Test Scenarios
+## Test Scenarios
+| Test ID  | Scenario Description                      
 |----------|--------------------------------------|
 | US_201   | Register User                        |
 | US_202   | Negative Register User               |
@@ -35,7 +35,8 @@ Projede kullanıcı girişleri, sayfa doğrulamaları,ödeme bilgileri ve temel 
 |----------|--------------------------------------|
 
 
-## Kurulum
-1. Projeyi klonlayın:
+
+## Setup
+1. Cloning the project:
 ```bash
 https://github.com/ramazandogaan/demowebshop
